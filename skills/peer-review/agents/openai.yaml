@@ -1,0 +1,4 @@
+interface:
+  display_name: "Peer Review"
+  short_description: "Run a bounded independent code review loop"
+  default_prompt: "Use $peer-review to review this change with an independent model."

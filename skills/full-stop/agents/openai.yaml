@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full Stop"
+  short_description: "Prepare a verified PR without merging it"
+  default_prompt: "Use $full-stop to finish this change and leave its PR ready to merge."

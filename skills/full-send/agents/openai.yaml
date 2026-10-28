@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full Send"
+  short_description: "Ship a verified change through merge and cleanup"
+  default_prompt: "Use $full-send to finish, review, merge, and clean up this change."
