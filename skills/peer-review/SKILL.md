@@ -12,14 +12,16 @@ Use one independent reviewer to check a scoped change without taking ownership o
 
 ## Select the backend and reviewer
 
-Honor an explicit backend, provider, model, effort, or round budget first. Otherwise detect both backends:
+Honor an explicit backend, provider, model, effort, or round budget first. Otherwise detect available backends:
 
-1. Herdr is available when `HERDR_ENV=1`.
-2. T3 Code is available when one bounded `orchestrator_capabilities` call succeeds.
-3. If both are available, ask once. If neither is available, report the blocker.
+1. Work Terminal is available when current tab has authenticated broker context.
+2. Herdr is available when `HERDR_ENV=1`.
+3. T3 Code is available when one bounded `orchestrator_capabilities` call succeeds.
+4. If multiple are available, ask once. If none are available, report the blocker.
 
 Read the selected adapter completely:
 
+- [Work Terminal](references/WORK-TERMINAL.md)
 - [Herdr](references/HERDR.md)
 - [T3 Code](references/T3CODE.md)
 
@@ -44,7 +46,7 @@ Done when the base, paths, intent, exclusions, and check results identify one re
 
 ## 2. Run the first review
 
-Use the adapter to start one reviewer. It must not edit files, commit, push, comment on PRs, merge, or start helpers.
+Use the adapter to start one reviewer. Work Terminal creates a reviewer tab; it has no pane/thread link. It must not edit files, commit, push, comment on PRs, merge, or start helpers.
 
 Give it:
 

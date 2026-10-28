@@ -1,6 +1,6 @@
 ---
 name: issue-driven-development
-description: Orchestrate development from GitHub issues, one isolated delegate at a time in Herdr or T3 Code.
+description: Orchestrate development from GitHub issues, one isolated delegate at a time in Work Terminal, Herdr, or T3 Code.
 disable-model-invocation: true
 ---
 
@@ -13,13 +13,15 @@ You are the **orchestrator**. Help the user choose the next issue, hand it to a 
 Choose one backend before any orchestration action:
 
 1. Use the backend the user named.
-2. Otherwise, Herdr is available when `HERDR_ENV=1`.
-3. Otherwise, make one bounded call to T3 Code's `orchestrator_capabilities`; success means T3 Code is available.
-4. If both are available and the user did not choose, ask once. If neither is available, report that and stop.
+2. Use Work Terminal when user chooses it and current tab has authenticated broker context.
+3. Otherwise, Herdr is available when `HERDR_ENV=1`.
+4. Otherwise, make one bounded call to T3 Code's `orchestrator_capabilities`; success means T3 Code is available.
+5. If multiple are available and user did not choose, ask once. If none are available, report that and stop.
 
 Read the selected adapter completely before continuing:
 
 - Herdr: [HERDR.md](HERDR.md)
+- Work Terminal: [WORK-TERMINAL.md](WORK-TERMINAL.md)
 - T3 Code: [T3CODE.md](T3CODE.md)
 
 Resolve every linked file relative to this skill directory. The target repository does not need to contain this skill.
@@ -35,7 +37,7 @@ Ask the user, in one round, to confirm the following items and every session que
    - Quick wins: lowest complexity first, to clear the queue.
    - Unblockers first: issues other issues depend on.
    - Theme: one area at a time.
-2. **Delegate routing.** Confirm or change the model and effort for this session. Treat these as preferences, not guaranteed availability:
+2. **Backend and delegate routing.** Confirm backend (Work Terminal, Herdr, or T3 Code), model, and effort for this session. Treat these as preferences, not guaranteed availability:
 
    | Issue kind | Preferred routing |
    | --- | --- |
@@ -66,7 +68,7 @@ Done when one issue and its routing are confirmed.
 
 ## 3. Start the delegate
 
-Follow the selected adapter's start procedure. The brief must tell the delegate to read, in order:
+Follow the selected adapter's start procedure. Work Terminal uses `createTab` and `promptTab`; it has no pane/thread link, so give user tab identity and keep current tab focused. The brief must tell the delegate to read, in order:
 
 1. [DELEGATE.md](DELEGATE.md)
 2. the selected backend adapter
@@ -84,7 +86,7 @@ The delegate reads the issue and comments directly. Do not repeat or summarise t
 
 Run one delegate at a time unless the user asks for more. Each delegate reviews its PR with the user, so parallel work competes for the user's attention.
 
-Done when the backend confirms that the brief was submitted and the user has the delegate's pane or thread link.
+Done when backend confirms brief submitted and user has delegate tab identity, pane, or thread link.
 
 ## 4. Handle handoffs and completion
 
